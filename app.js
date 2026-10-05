@@ -24,6 +24,31 @@ var stamp = 'AR-' + d.getFullYear().toString().slice(2) + (d.getMonth() + 1).toS
 var ticketEl = document.getElementById('ticketNum');
 if (ticketEl) ticketEl.textContent = stamp;
 
+// Power quote: category group + pill picker
+var pqGroups = document.querySelectorAll('.pq-group');
+var pqPanels = document.querySelectorAll('.pq-subpanel');
+var pqPills = document.querySelectorAll('.pq-pill');
+var categoryInput = document.getElementById('categoryInput');
+var pqSelectedLabel = document.getElementById('pqSelectedLabel');
+
+pqGroups.forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var g = btn.getAttribute('data-group');
+    pqGroups.forEach(function (b) { b.classList.toggle('active', b === btn); });
+    pqPanels.forEach(function (p) { p.hidden = p.getAttribute('data-group-panel') !== g; });
+  });
+});
+
+pqPills.forEach(function (pill) {
+  pill.addEventListener('click', function () {
+    pqPills.forEach(function (p) { p.classList.remove('active'); });
+    pill.classList.add('active');
+    var val = pill.getAttribute('data-value');
+    if (categoryInput) categoryInput.value = val;
+    if (pqSelectedLabel) pqSelectedLabel.textContent = 'Selected: ' + val;
+  });
+});
+
 var quoteForm = document.querySelector('form.quote-form');
 if (quoteForm) {
   quoteForm.addEventListener('submit', function (e) {
@@ -32,17 +57,31 @@ if (quoteForm) {
     var statusEl = quoteForm.querySelector('.form-status');
     var submitBtn = quoteForm.querySelector('button[type="submit"]');
 
+    var isPickupCity = quoteForm.pickupCity !== undefined;
+    var pickupVal = isPickupCity
+      ? [quoteForm.pickupCity.value, quoteForm.pickupState.value].filter(Boolean).join(', ')
+      : quoteForm.pickup.value;
+    var dropoffVal = isPickupCity
+      ? [quoteForm.dropoffCity.value, quoteForm.dropoffState.value].filter(Boolean).join(', ')
+      : quoteForm.dropoff.value;
+
     var payload = {
       category: quoteForm.category.value,
-      pickup: quoteForm.pickup.value,
-      dropoff: quoteForm.dropoff.value,
+      pickup: pickupVal,
+      dropoff: dropoffVal,
       timing: quoteForm.timing.value,
       details: quoteForm.details.value,
       name: quoteForm.name.value,
       email: quoteForm.email.value,
       phone: quoteForm.phone.value || null,
+      budget: quoteForm.budget ? (quoteForm.budget.value || null) : null,
       source_page: window.location.pathname.split('/').pop() || 'index.html'
     };
+
+    if (!payload.category) {
+      if (statusEl) { statusEl.textContent = 'Please choose what\'s moving before submitting.'; statusEl.className = 'form-status err'; }
+      return;
+    }
 
     submitBtn.disabled = true;
     submitBtn.textContent = 'Submitting...';

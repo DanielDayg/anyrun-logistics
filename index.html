@@ -50,30 +50,356 @@
 
 <main id="top">
 
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Dispatch Open · Nationwide</p>
-        <h1>If it needs to <span class="accent">move</span>, we'll run it.</h1>
-        <p class="lede">Cars driven cross-country. Freight shipped by carrier. Packages and messages delivered in person, by ground or by air. Animals moved safely. Tell us what's moving and get a real quote, straight from us.</p>
-        <div class="hero-cta-row">
-          <a href="#quote" class="btn">Get Your Quote</a>
-          <a href="#move" class="btn btn-ghost">See What We Move</a>
-        </div>
-        <p class="hero-note">No account needed. No bot guessing your price.</p>
+  <section class="hero power-quote" id="quote">
+    <div class="wrap">
+      <p class="eyebrow">Dispatch Open &middot; Nationwide</p>
+      <h1>The <span class="accent">Power Quote</span></h1>
+      <p class="lede">Pick exactly what's moving, where it's going, and what you're looking to spend. Real pricing from a real person, usually within one business day.</p>
+      <div class="pq-badges">
+        <span class="pq-badge"><strong>Priced to compete.</strong> Already got a number? We'll see if we can beat it.</span>
+        <span class="pq-badge"><strong>Ground or air.</strong> Most jobs go by road. If it has to fly, we'll fly it.</span>
       </div>
-      <div class="route-card">
-        <p class="eyebrow" style="margin-bottom:0;">Why Book With Us</p>
-        <ul class="hero-points">
-          <li>
-            <span class="k">Priced To Compete</span>
-            <p>Already got a number from someone else? Send it over, we'll see if we can beat it.</p>
-          </li>
-          <li>
-            <span class="k">Ground Or Air</span>
-            <p>Most jobs go by road. If it has to fly to get there on time, we'll fly it.</p>
-          </li>
-        </ul>
+    </div>
+
+    <div class="wrap">
+      <div class="manifest pq-manifest">
+        <div class="ticket-head">
+          <div class="id mono">MANIFEST NO. <strong id="ticketNum">AR-000000</strong></div>
+          <span class="status-pill">Status: Open</span>
+        </div>
+
+        <form class="quote-form pq-form" novalidate>
+          <input type="hidden" name="category" id="categoryInput">
+
+          <div class="field full">
+            <label>1. What's moving? <span class="pq-selected" id="pqSelectedLabel"></span></label>
+            <div class="pq-group-grid" id="pqGroupGrid">
+          <button type="button" class="pq-group" data-group="vehicles">
+            <span class="tag mono">01</span>
+            <span class="pq-group-label">Vehicles &amp; Freight</span>
+            <span class="pq-group-desc">Driven or shipped, car to heavy equipment.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="people">
+            <span class="tag mono">02</span>
+            <span class="pq-group-label">People &amp; Rides</span>
+            <span class="pq-group-desc">City-to-city rides and passenger transport.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="animals">
+            <span class="tag mono">03</span>
+            <span class="pq-group-label">Animals</span>
+            <span class="pq-group-desc">Pets and livestock, moved with care.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="valuables">
+            <span class="tag mono">04</span>
+            <span class="pq-group-label">Valuables &amp; Special Items</span>
+            <span class="pq-group-desc">Jewelry, art, documents, anything irreplaceable.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="messages">
+            <span class="tag mono">05</span>
+            <span class="pq-group-label">Messages &amp; Documents</span>
+            <span class="pq-group-desc">Said or handed over, in person.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="verification">
+            <span class="tag mono">06</span>
+            <span class="pq-group-label">Verification &amp; In-Person Checks</span>
+            <span class="pq-group-desc">A second set of eyes before you commit.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="representation">
+            <span class="tag mono">07</span>
+            <span class="pq-group-label">Representation</span>
+            <span class="pq-group-desc">Show up where you can't be.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="events">
+            <span class="tag mono">08</span>
+            <span class="pq-group-label">Events &amp; Occasions</span>
+            <span class="pq-group-desc">Weddings, holidays, surprises, send-offs.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="urgent">
+            <span class="tag mono">09</span>
+            <span class="pq-group-label">Urgent &amp; Everyday</span>
+            <span class="pq-group-desc">Time-sensitive, forgot-it, left-behind.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="business">
+            <span class="tag mono">10</span>
+            <span class="pq-group-label">Business &amp; Errands</span>
+            <span class="pq-group-desc">Office pickups, courier runs, odd jobs.</span>
+          </button>
+          <button type="button" class="pq-group" data-group="other">
+            <span class="tag mono">11</span>
+            <span class="pq-group-label">Something Else</span>
+            <span class="pq-group-desc">Not on the list? Tell us anyway.</span>
+          </button>
+            </div>
+          <div class="pq-subpanel" data-group-panel="vehicles" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Vehicles & Freight: Drive A Car Somewhere">Drive A Car Somewhere</button>
+              <button type="button" class="pq-pill" data-value="Vehicles & Freight: Ship A Car By Freight">Ship A Car By Freight</button>
+              <button type="button" class="pq-pill" data-value="Vehicles & Freight: Motorcycle, ATV, or Boat">Motorcycle, ATV, or Boat</button>
+              <button type="button" class="pq-pill" data-value="Vehicles & Freight: Heavy Equipment">Heavy Equipment</button>
+              <button type="button" class="pq-pill" data-value="Vehicles & Freight: Snowbird Seasonal Move">Snowbird Seasonal Move</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="people" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="People & Rides: City-To-City Ride">City-To-City Ride</button>
+              <button type="button" class="pq-pill" data-value="People & Rides: Airport Pickup or Drop-off">Airport Pickup or Drop-off</button>
+              <button type="button" class="pq-pill" data-value="People & Rides: Multi-Stop or Event Ride">Multi-Stop or Event Ride</button>
+              <button type="button" class="pq-pill" data-value="People & Rides: Long-Distance Ride">Long-Distance Ride</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="animals" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Animals: Dog or Cat">Dog or Cat</button>
+              <button type="button" class="pq-pill" data-value="Animals: Livestock or Large Animal">Livestock or Large Animal</button>
+              <button type="button" class="pq-pill" data-value="Animals: Deliver A Pet To Family">Deliver A Pet To Family</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="valuables" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Valuables & Special Items: Jewelry or Collectibles">Jewelry or Collectibles</button>
+              <button type="button" class="pq-pill" data-value="Valuables & Special Items: Cash or Financial Documents">Cash or Financial Documents</button>
+              <button type="button" class="pq-pill" data-value="Valuables & Special Items: Art or Antiques">Art or Antiques</button>
+              <button type="button" class="pq-pill" data-value="Valuables & Special Items: Estate or Sentimental Items">Estate or Sentimental Items</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="messages" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Messages & Documents: A Personal Message">A Personal Message</button>
+              <button type="button" class="pq-pill" data-value="Messages & Documents: A Hard Conversation">A Hard Conversation</button>
+              <button type="button" class="pq-pill" data-value="Messages & Documents: Resignation Letter">Resignation Letter</button>
+              <button type="button" class="pq-pill" data-value="Messages & Documents: Legal or Business Documents">Legal or Business Documents</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="verification" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Verification & In-Person Checks: Inspect A Car Before You Buy">Inspect A Car Before You Buy</button>
+              <button type="button" class="pq-pill" data-value="Verification & In-Person Checks: Verify A Listing Before You Pay">Verify A Listing Before You Pay</button>
+              <button type="button" class="pq-pill" data-value="Verification & In-Person Checks: Check On A Property">Check On A Property</button>
+              <button type="button" class="pq-pill" data-value="Verification & In-Person Checks: Photo Or Video Proof">Photo Or Video Proof</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="representation" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Representation: Attend A Meeting For You">Attend A Meeting For You</button>
+              <button type="button" class="pq-pill" data-value="Representation: Attend A Conference For You">Attend A Conference For You</button>
+              <button type="button" class="pq-pill" data-value="Representation: Sign For Something In Person">Sign For Something In Person</button>
+              <button type="button" class="pq-pill" data-value="Representation: Stand In Line For You">Stand In Line For You</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="events" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Events & Occasions: Wedding Day Items">Wedding Day Items</button>
+              <button type="button" class="pq-pill" data-value="Events & Occasions: Holiday or Seasonal Gift">Holiday or Seasonal Gift</button>
+              <button type="button" class="pq-pill" data-value="Events & Occasions: Surprise Gift or Flowers">Surprise Gift or Flowers</button>
+              <button type="button" class="pq-pill" data-value="Events & Occasions: College Move-In or Care Package">College Move-In or Care Package</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="urgent" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Urgent & Everyday: Emergency Same-Day Delivery">Emergency Same-Day Delivery</button>
+              <button type="button" class="pq-pill" data-value="Urgent & Everyday: Something You Left Behind">Something You Left Behind</button>
+              <button type="button" class="pq-pill" data-value="Urgent & Everyday: Retrieve Belongings From An Ex">Retrieve Belongings From An Ex</button>
+              <button type="button" class="pq-pill" data-value="Urgent & Everyday: Perishable Food or Flowers">Perishable Food or Flowers</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="business" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Business & Errands: Office Pickup or Drop-off">Office Pickup or Drop-off</button>
+              <button type="button" class="pq-pill" data-value="Business & Errands: Courier Run">Courier Run</button>
+              <button type="button" class="pq-pill" data-value="Business & Errands: Something Else For My Business">Something Else For My Business</button>
+            </div>
+          </div>
+          <div class="pq-subpanel" data-group-panel="other" hidden>
+            <div class="pq-pill-grid">
+              <button type="button" class="pq-pill" data-value="Something Else: Not Sure, Give Me An Estimate">Not Sure, Give Me An Estimate</button>
+              <button type="button" class="pq-pill" data-value="Something Else: Something Not Listed Here">Something Not Listed Here</button>
+            </div>
+          </div>
+          </div>
+
+          <div class="field full">
+            <label for="budget">2. What's your budget?</label>
+            <select id="budget" name="budget">
+              <option value="" disabled selected>Choose a range (optional, helps us price faster)</option>
+              <option>Under $100</option>
+              <option>$100 &ndash; $300</option>
+              <option>$300 &ndash; $750</option>
+              <option>$750 &ndash; $2,000</option>
+              <option>$2,000 &ndash; $5,000</option>
+              <option>$5,000+</option>
+              <option>Not sure, give me an estimate</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label>3. Where's it starting and ending?</label>
+          </div>
+
+          <div class="field">
+            <label for="pickupCity">Pickup city</label>
+            <input type="text" id="pickupCity" name="pickupCity" placeholder="City" required>
+          </div>
+          <div class="field">
+            <label for="pickupState">Pickup state</label>
+            <select id="pickupState" name="pickupState" required>
+              <option value="" disabled selected>State</option>
+              <option>Alabama</option>
+              <option>Alaska</option>
+              <option>Arizona</option>
+              <option>Arkansas</option>
+              <option>California</option>
+              <option>Colorado</option>
+              <option>Connecticut</option>
+              <option>Delaware</option>
+              <option>District of Columbia</option>
+              <option>Florida</option>
+              <option>Georgia</option>
+              <option>Hawaii</option>
+              <option>Idaho</option>
+              <option>Illinois</option>
+              <option>Indiana</option>
+              <option>Iowa</option>
+              <option>Kansas</option>
+              <option>Kentucky</option>
+              <option>Louisiana</option>
+              <option>Maine</option>
+              <option>Maryland</option>
+              <option>Massachusetts</option>
+              <option>Michigan</option>
+              <option>Minnesota</option>
+              <option>Mississippi</option>
+              <option>Missouri</option>
+              <option>Montana</option>
+              <option>Nebraska</option>
+              <option>Nevada</option>
+              <option>New Hampshire</option>
+              <option>New Jersey</option>
+              <option>New Mexico</option>
+              <option>New York</option>
+              <option>North Carolina</option>
+              <option>North Dakota</option>
+              <option>Ohio</option>
+              <option>Oklahoma</option>
+              <option>Oregon</option>
+              <option>Pennsylvania</option>
+              <option>Rhode Island</option>
+              <option>South Carolina</option>
+              <option>South Dakota</option>
+              <option>Tennessee</option>
+              <option>Texas</option>
+              <option>Utah</option>
+              <option>Vermont</option>
+              <option>Virginia</option>
+              <option>Washington</option>
+              <option>West Virginia</option>
+              <option>Wisconsin</option>
+              <option>Wyoming</option>
+              <option>Canada / Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="dropoffCity">Drop-off city</label>
+            <input type="text" id="dropoffCity" name="dropoffCity" placeholder="City" required>
+          </div>
+          <div class="field">
+            <label for="dropoffState">Drop-off state</label>
+            <select id="dropoffState" name="dropoffState" required>
+              <option value="" disabled selected>State</option>
+              <option>Alabama</option>
+              <option>Alaska</option>
+              <option>Arizona</option>
+              <option>Arkansas</option>
+              <option>California</option>
+              <option>Colorado</option>
+              <option>Connecticut</option>
+              <option>Delaware</option>
+              <option>District of Columbia</option>
+              <option>Florida</option>
+              <option>Georgia</option>
+              <option>Hawaii</option>
+              <option>Idaho</option>
+              <option>Illinois</option>
+              <option>Indiana</option>
+              <option>Iowa</option>
+              <option>Kansas</option>
+              <option>Kentucky</option>
+              <option>Louisiana</option>
+              <option>Maine</option>
+              <option>Maryland</option>
+              <option>Massachusetts</option>
+              <option>Michigan</option>
+              <option>Minnesota</option>
+              <option>Mississippi</option>
+              <option>Missouri</option>
+              <option>Montana</option>
+              <option>Nebraska</option>
+              <option>Nevada</option>
+              <option>New Hampshire</option>
+              <option>New Jersey</option>
+              <option>New Mexico</option>
+              <option>New York</option>
+              <option>North Carolina</option>
+              <option>North Dakota</option>
+              <option>Ohio</option>
+              <option>Oklahoma</option>
+              <option>Oregon</option>
+              <option>Pennsylvania</option>
+              <option>Rhode Island</option>
+              <option>South Carolina</option>
+              <option>South Dakota</option>
+              <option>Tennessee</option>
+              <option>Texas</option>
+              <option>Utah</option>
+              <option>Vermont</option>
+              <option>Virginia</option>
+              <option>Washington</option>
+              <option>West Virginia</option>
+              <option>Wisconsin</option>
+              <option>Wyoming</option>
+              <option>Canada / Other</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="timing">When do you need this done?</label>
+            <select id="timing" name="timing" required>
+              <option value="" disabled selected>Choose a timeframe</option>
+              <option>As soon as possible</option>
+              <option>Within a week</option>
+              <option>Within a month</option>
+              <option>Flexible / just checking rates</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label for="details">Tell us about the job</label>
+            <textarea id="details" name="details" placeholder="What is it, rough size or weight, and anything else we should know." required></textarea>
+          </div>
+
+          <div class="field">
+            <label for="name">Your name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="field">
+            <label for="phone">Phone (optional)</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="submit-row">
+            <button type="submit" class="btn">Submit Manifest</button>
+            <span class="hero-note">Most quotes go out within one business day.</span>
+          </div>
+
+          <p class="fine">AnyRun only moves legal cargo. For regulated jobs (livestock, high-value vehicles, interstate freight, passenger rides) we'll ask a few follow-up questions before confirming anything.</p>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -172,86 +498,6 @@
       <div class="bio">
         <p class="eyebrow">Where We're Based</p>
         <p>AnyRun Logistics is based in Arizona, with a network of trusted drivers and couriers working across the United States and Canada. Every job gets reviewed and quoted by hand, and everyone on the team is someone we've vetted directly, not the lowest bid on an app. Want to talk through the details face to face before booking? You can set up a Zoom call with your driver or courier to go over the job first.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="quote">
-    <div class="wrap">
-      <p class="eyebrow">Get A Quote</p>
-      <h2 style="font-size:2rem;max-width:20ch;">Tell us what's moving. We'll tell you what it costs.</h2>
-      <p style="margin-bottom:36px;">No signup, no obligation. Fill out the manifest below and we'll follow up with a real quote, usually within one business day.</p>
-
-      <div class="manifest">
-        <div class="ticket-head">
-          <div class="id mono">MANIFEST NO. <strong id="ticketNum">AR-000000</strong></div>
-          <span class="status-pill">Status: Open</span>
-        </div>
-        <form class="quote-form" novalidate>
-
-          <div class="field full">
-            <label for="category">What needs to move?</label>
-            <select id="category" name="category" required>
-              <option value="" disabled selected>Choose a category</option>
-              <option>Vehicle Transport (driven)</option>
-              <option>Freight (shipped)</option>
-              <option>Courier &amp; Message Delivery</option>
-              <option>Animal Transport</option>
-              <option>Business Errand</option>
-              <option>Verification / In-Person Check</option>
-              <option>Something Else</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label for="pickup">Pickup location</label>
-            <input type="text" id="pickup" name="pickup" placeholder="City, State" required>
-          </div>
-
-          <div class="field">
-            <label for="dropoff">Drop-off location</label>
-            <input type="text" id="dropoff" name="dropoff" placeholder="City, State" required>
-          </div>
-
-          <div class="field full">
-            <label for="timing">When do you need this done?</label>
-            <select id="timing" name="timing" required>
-              <option value="" disabled selected>Choose a timeframe</option>
-              <option>As soon as possible</option>
-              <option>Within a week</option>
-              <option>Within a month</option>
-              <option>Flexible / just checking rates</option>
-            </select>
-          </div>
-
-          <div class="field full">
-            <label for="details">Tell us about the job</label>
-            <textarea id="details" name="details" placeholder="What is it (vehicle year/make/model, item, animal, or task), rough size or weight, and anything else we should know." required></textarea>
-          </div>
-
-          <div class="field">
-            <label for="name">Your name</label>
-            <input type="text" id="name" name="name" required>
-          </div>
-
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
-          </div>
-
-          <div class="field">
-            <label for="phone">Phone (optional)</label>
-            <input type="tel" id="phone" name="phone">
-          </div>
-
-          <div class="submit-row">
-            <button type="submit" class="btn">Submit Manifest</button>
-            <span class="hero-note">Most quotes go out within one business day.</span>
-          </div>
-
-          <p class="fine">AnyRun only moves legal cargo. For regulated jobs (livestock, high-value vehicles, interstate freight) we'll ask a few follow-up questions before confirming anything.</p>
-        <p class="form-status" role="status" aria-live="polite"></p>
-        </form>
       </div>
     </div>
   </section>
