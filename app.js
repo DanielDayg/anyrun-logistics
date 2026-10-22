@@ -116,3 +116,43 @@ if (quoteForm) {
       });
   });
 }
+
+// Simple first-party visit counter. No cookies, no IP stored, no third parties.
+// Writes one row per page per browser tab session to the page_views table (insert-only via RLS).
+(function () {
+  try {
+    var host = location.hostname;
+    if (host !== 'anyrunlogistics.com' && host !== 'www.anyrunlogistics.com') return;
+    if (location.search.indexOf('owner=1') !== -1) localStorage.setItem('ar_owner', '1');
+    if (localStorage.getItem('ar_owner') === '1') return;
+    if (navigator.webdriver) return;
+    if (/bot|crawl|spider|slurp|headless|lighthouse/i.test(navigator.userAgent)) return;
+
+    var page = location.pathname.split('/').pop() || 'index.html';
+    var seenKey = 'ar_pv_' + page;
+    if (sessionStorage.getItem(seenKey)) return;
+    sessionStorage.setItem(seenKey, '1');
+
+    var sid = sessionStorage.getItem('ar_sid');
+    if (!sid) {
+      sid = Math.random().toString(36).slice(2) + Date.now().toString(36);
+      sessionStorage.setItem('ar_sid', sid);
+    }
+
+    var ref = '';
+    try { ref = document.referrer ? new URL(document.referrer).hostname : ''; } catch (e) {}
+    if (ref === host) ref = '';
+
+    fetch(SUPABASE_URL + '/rest/v1/page_views', {
+      method: 'POST',
+      keepalive: true,
+      headers: {
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ page: page, referrer: ref || null, sid: sid, width: window.innerWidth })
+    }).catch(function () {});
+  } catch (e) {}
+})();
